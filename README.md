@@ -334,15 +334,12 @@ Debug all related parses into `console.log`
 ie. `deval.debug = true`
 ```javascript
 var deval = new Deval({
-  urlParamsToForm: false,          // default: true
-  debug: true,                     // default: false
+  urlParamsToForm: false,   // default: true
+  debug: true,              // default: false
 
   // Global Ajax callbacks
-  onLoad:  function() {},          // ajax onLoad (loading)
-  onAjax:  function() {},          // ajax onAjax (ok)
-
-  // Form changes (data-form)
-  onStorage:  function( data ) {}, // Callback if some form has some value changed (formStorage: true)
+  onLoad:  function() {},   // ajax onLoad (loading)
+  onAjax:  function() {}    // ajax onAjax (ok)
 });
 ```
 #### If you want to access the rendering engine directly with your own stuff
