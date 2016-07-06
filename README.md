@@ -25,7 +25,11 @@ Happy hacking! ;-)
     <script src="deval.min.js"></script>
   </head>
   <body>
-    <p data-eval="timer = new Date().toLocaleTimeString()" data-interval="1000">[timer]</p>
+    <p
+      data-eval="timer = new Date().toLocaleTimeString()"
+      data-interval="1000">
+        [timer]
+    </p>
     <script>
       deval.parse();
     </script>
