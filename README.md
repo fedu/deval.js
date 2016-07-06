@@ -18,6 +18,22 @@ Happy hacking! ;-)
 
 @TODO Refactor and port for Node.js (npm)
 
+## Usage
+```
+<html>
+  <head>
+    <script src="deval.min.js"></script>
+  </head>
+  <body>
+    <p data-eval="timer = new Date().toLocaleTimeString()" data-interval="1000">[timer]</p>
+    <script>
+      deval.parse();
+    </script>
+  </body>
+</html>
+```
+
+
 #### Simple example
 ```
 <p data-eval="simple = 'Example'">[simple]</p>
