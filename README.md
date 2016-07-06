@@ -45,13 +45,13 @@ Happy hacking! ;-)
     <div data-eval="news = ajax:xml:news.xml" data-interval="5000">
       <div data-ajax="init">Loading..</div>
       <div data-ajax="ok">
-    <table>
-      <tbody data-loop="n = news.getElementsByTagName('title')">
-        <tr data-eval="[n.num()] > 2">
-          <td>[n.childNodes[0].nodeValue]</td>
-        </tr>
-      </tbody>
-    </table>
+        <table>
+          <tbody data-loop="n = news.getElementsByTagName('title')">
+            <tr data-eval="[n.num()] > 2">
+              <td>[n.childNodes[0].nodeValue]</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
       <div data-ajax="loading">Updating..</div>
       <div data-ajax="error">Could not load any news.</div>
