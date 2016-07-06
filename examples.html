@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>deval.js examples</title>
+
+	<!-- deval.js -->
+	<script src="deval.min.js"></script>
+</head>
+<body>
+
+	<h1>Deval.js examples</h1>
+	<p>View page source.</p>
+
+	<!-- 1. SIMPLE RENDERS -->
+	<!-- 1.1. Simple example -->
+	<p data-eval="simple = 'Example'">[simple]</p>
+	<!-- 1.2. Display today date -->
+	<p data-eval="time = new Date()">[time]</p>
+	<!-- 1.3. Render clock which updates every second -->
+	<p data-eval="timer = new Date().toLocaleTimeString()" data-interval="1000">[timer]</p>
+
+	<!-- 2. OBJECT DATA RENDERING EXAMPLE -->
+	<!-- Data -->
+	<script>
+		var example = {
+			contents: {
+				firstArray: [
+					{ html:'content1-1' },
+					{ html:'content1-2' },
+					{ html:'content1-3' }
+				],
+				secondEmpty: {
+					// empty
+				},
+				thirdObject: {
+					'some': { html:'content3-1' }
+				}
+			}
+		};
+
+		function myRowFormatter(dat) {
+			dat.html = dat.html.toUpperCase();
+			return dat;
+		}
+
+		function doSomethingWithDataAndKey(s, key) {
+			return s + ' render key '+key;
+		}
+
+	</script>
+	<!-- Rendering -->
+	<ul data-loop="s = example.contents">
+		<li>
+			[s.num()]. [s.key()] ([s.count()])
+			<ul data-loop="c = s" data-row="myRowFormatter">
+				<li>
+					<div data-eval="html = doSomethingWithDataAndKey(c.html, '[c.key()]')">
+						<p>[html]</p>
+					</div>
+				</li>
+			</ul>
+		</li>
+	</ul>
+
+	<!-- 3. EVENTS -->
+	<h2>Events</h2>
+	<p data-eval="timer = new Date().toLocaleTimeString()" data-event="clock">Event clock: [timer]</p>
+	<button onclick="deval.dispatchEvent('clock')">Event: clock</button>
+
+	<!-- 4. LOADING EXTERNAL DATA WITH AJAX -->
+	<!-- Remember to respect cross origin XMLHttpRequests ;) -->
+	<h2>Loading data from URL's</h2>
+
+	<!-- 4.1. Text file -->
+	<p data-eval="txt = ajax:test.txt">[txt]</p>
+
+	<!-- 4.2. JSON file -->
+	<p data-eval="json = ajax:json:test.json">[json.some.example]</p>
+
+	<!-- 4.3. XML file -->
+	<div data-eval="xml = ajax:xml:test.xml">
+		<p data-eval="xmlContent = xml.getElementsByTagName('example')[0].childNodes[0].nodeValue">
+			[xmlContent]
+		</p>
+	</div>
+
+	<!-- Parse and render with debug option -->
+	<script>
+		// debug
+		deval.debug = true;
+
+		// parse and render the whole body
+		deval.parse();
+	</script>
+
+</body>
+</html>

@@ -1,0 +1,5 @@
+<xml>
+    <some>
+        <example>This is &lt;i>test.xml&lt;/i> content</example>
+    </some>
+</xml>
