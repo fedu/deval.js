@@ -214,7 +214,7 @@ Events for DOM objects: `init | loading | ok | error`
 ### data-loop       
 Loop data within innerHTML template
 ```html
-<ul data-loop="row = some.data.with.myarray">
+<ul data-loop="row = some.data">
   <li>[row]</li>
 </ul>
 ```
@@ -231,7 +231,7 @@ Supported inline methods for data:
 Handle loop data before it renders on a row basis
 
 ```html
-<ul data-row="myRowFormatter" data-loop="row = some.data.with.myarray">
+<ul data-row="myRowFormatter" data-loop="row = some.data">
   <li>[row]</li>
 </ul>
     
@@ -251,7 +251,7 @@ Listen to events with chosen name and fire `Deval.update` accordingly
 Loop `limit uint[,uint]`
 
 ```html
-<ul data-limit="5" data-loop="row = some.data.with.myarray">
+<ul data-limit="5" data-loop="row = some.data">
   <li>[row]</li>
 </ul>
 
