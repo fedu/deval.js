@@ -180,8 +180,8 @@ data-eval="myOutput = calculateMyThings(data)"
 ### data-params     
 URL params can be passed into ajax URL with data-params attributes
 
-```html
-<div data-params="min=1&amp;max=myMaxValue" data-eval="my = ajax:/call"></div>
+```
+<div data-params="min=1&max=myMaxValue" data-eval="my = ajax:/call"></div>
 ```
 
 This tries to read all values first as a variable, if not found, they're interpreted as value.
@@ -189,8 +189,8 @@ So you can pass text and variables like `var min = 0; var max = 10;` with `foo=b
 
 Here are some other examples of usage -> result:
 
-```html
-data-params="foo=bar&amp;limit=10" -> /call?foo=barVariableValue&amp;limit=10
+```
+data-params="foo=bar&limit=10" -> /call?foo=barVariableValue&limit=10
 data-params="foo='bar'"        -> /call?foo=bar
 data-params="p"                -> /call?pVarValue
 data-params="{foo:'bar'}"      -> /call?foo=bar
