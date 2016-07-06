@@ -329,16 +329,8 @@ Debug all related parses into `console.log`
 ```
 
 ----
-## Data-loop row methods:
-```html
-[data.num()] - Row number
-[data.key()] - Row key
-[data.count()] - Row array|object count (length)
-```
-
-----
 ## Direct JavaScript API:
-#### Initialize - You can se these directly too
+#### Initialize
 ie. `deval.debug = true`
 ```javascript
 var deval = new Deval({
