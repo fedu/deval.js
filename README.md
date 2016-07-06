@@ -31,6 +31,35 @@ Happy hacking! ;-)
 <p data-eval="timer = new Date().toLocaleTimeString()" data-interval="1000">[timer]</p>
 ```
 
+----
+## Ajax calls
+
+### JSON REST API Ajax call:
+    <div data-eval="dat = ajax:json:getMyJSON">
+        <div data-ajax="init">Loading..</div>
+        <div data-ajax="ok">
+            <div data-eval="dat.status == 'success'">Success!</div>
+            <div data-eval="dat.status == 'error'">Error: [dat.error]</div>
+        </div>
+        <div data-ajax="error">Could not connect to server</div>
+    </div>
+
+### XML Ajax call (ignore first 2 titles and update it every 5 seconds):
+    <div data-eval="news = ajax:xml:news.xml" data-interval="5000">
+      <div data-ajax="init">Loading..</div>
+      <div data-ajax="ok">
+    <table>
+      <tbody data-loop="n = news.getElementsByTagName('title')">
+        <tr data-eval="[n.num()] > 2">
+          <td>[n.childNodes[0].nodeValue]</td>
+        </tr>
+      </tbody>
+    </table>
+      </div>
+      <div data-ajax="loading">Updating..</div>
+      <div data-ajax="error">Could not load any news.</div>
+    </div>
+
 #### Object data rendering example
 ```
 <script>
@@ -244,38 +273,6 @@ Ignores this dom tree in parsing (if you want to use `deval.render` calls direct
 Debug all related parses into `console.log`
 
     <div data-debug data-eval="debug = this">[debug]</div>
-
-----
-## Some examples of usage:
-
-### Clock:
-    <div data-eval="date = new Date().toString()" data-interval="1000">[date]</div>
-
-### JSON REST API Ajax call:
-    <div data-eval="dat = ajax:json:getMyJSON">
-    <div data-ajax="init">Loading..</div>
-    <div data-ajax="ok">
-    <div data-eval="dat.status == 'success'">Success!</div>
-    <div data-eval="dat.status == 'error'">Error: [dat.error]</div>
-    </div>
-    <div data-ajax="error">Could not connect to server</div>
-    </div>
-
-### XML Ajax call (ignore first 2 titles and update it every 5 seconds):
-    <div data-eval="news = ajax:xml:news.xml" data-interval="5000">
-      <div data-ajax="init">Loading..</div>
-      <div data-ajax="ok">
-    <table>
-      <tbody data-loop="n = news.getElementsByTagName('title')">
-        <tr data-eval="[n.num()] > 2">
-          <td>[n.childNodes[0].nodeValue]</td>
-        </tr>
-      </tbody>
-    </table>
-      </div>
-      <div data-ajax="loading">Updating..</div>
-      <div data-ajax="error">Could not load any news.</div>
-    </div>
 
 ----
 ## Data-loop row methods:
