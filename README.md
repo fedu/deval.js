@@ -335,7 +335,6 @@ ie. `deval.debug = true`
 ```javascript
 var deval = new Deval({
   urlParamsToForm: false,          // default: true
-  formStorage: false,              // default: true
   debug: true,                     // default: false
 
   // Global Ajax callbacks
