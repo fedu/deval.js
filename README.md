@@ -49,6 +49,11 @@ Happy hacking! ;-)
 ```html
 <p data-eval="timer = new Date().toLocaleTimeString()" data-interval="1000">[timer]</p>
 ```
+#### Access DOM tree
+```html
+<p data-eval="this.style.background = true ? 'yellow' : 'red'">I have yellow background</p>
+```
+
 
 #### JSON REST API Ajax call:
 ```html
