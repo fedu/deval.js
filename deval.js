@@ -40,133 +40,133 @@
  * -------------------------------------------------------------------------------------------------
  *  data-eval    Javascript evaluation and conditionals etc.
  *
- *          ie.
- *          <div data-eval="txt = ajax:hello.txt">[txt]</div>
+ *               ie.
+ *               <div data-eval="txt = ajax:hello.txt">[txt]</div>
  *
- *          Few examples:
+ *               Few examples:
  *
- *          data-eval="myString = 'it\'s a string!'"
- *          data-eval="myObject = {data:'things'}"
- *          data-eval="myArray = [1,2,3,4]"
- *          data-eval="myBoolean == 'things' ? true : false"
- *          data-eval="myData = ajax:hello.txt"
- *          data-eval="myJson = ajax:json:my.json"
- *          data-eval="myXml = ajax:xml:my.xml"
- *          data-eval="myUppercaseString = 'wow'.toUpperCase()"
- *          data-eval="myOutput = calculateMyThings(data)"
+ *               data-eval="myString = 'it\'s a string!'"
+ *               data-eval="myObject = {data:'things'}"
+ *               data-eval="myArray = [1,2,3,4]"
+ *               data-eval="myBoolean == 'things' ? true : false"
+ *               data-eval="myData = ajax:hello.txt"
+ *               data-eval="myJson = ajax:json:my.json"
+ *               data-eval="myXml = ajax:xml:my.xml"
+ *               data-eval="myUppercaseString = 'wow'.toUpperCase()"
+ *               data-eval="myOutput = calculateMyThings(data)"
  *
- *  data-params    URL params can be passed into ajax URL with data-params attributes
+ *  data-params  URL params can be passed into ajax URL with data-params attributes
  *
- *          ie.
- *          <div data-params="min=1&max=myMaxValue" data-eval="my = ajax:/call"></div>
+ *               ie.
+ *               <div data-params="min=1&max=myMaxValue" data-eval="my = ajax:/call"></div>
  *
- *          This tries to read all the values as a variable, if not found they are interpreted as normal value
- *          So you can pass text and variables as values like var min = 0; var max = 10; with foo=bar&min=min&max=max
+ *               This tries to read all the values as a variable, if not found they are interpreted as normal value
+ *               You can pass text and variables as values like var min = 0; var max = 10; with foo=bar&min=min&max=max
  *
- *          Here are some other examples of usage -> result:
+ *               Here are some other examples of usage -> result:
  *
- *          data-params="foo=bar&limit=10"  -> /call?foo=barVariableValue&limit=10
- *          data-params="foo='bar'"      -> /call?foo=bar
- *          data-params="p"          -> /call?pVarValue
- *          data-params="{foo:'bar'}"    -> /call?foo=bar
- *          data-params="t=Date.now()"    -> /call?t=1126217126272
+ *               data-params="foo=bar&limit=10"  -> /call?foo=barVariableValue&limit=10
+ *               data-params="foo='bar'"      -> /call?foo=bar
+ *               data-params="p"          -> /call?pVarValue
+ *               data-params="{foo:'bar'}"    -> /call?foo=bar
+ *               data-params="t=Date.now()"    -> /call?t=1126217126272
  *
  *  data-ajax    Events for DOM objects: init|loading|ok|error
  *
- *          ie.
- *          <p data-ajax="init">Loading..</p>
- *          <p data-ajax="loading">Reloading data..</p>
- *          <p data-ajax="ok">Ajax completed succesfully.</p>
- *          <p data-ajax="error">Could not access the server!</p>
+ *               ie.
+ *               <p data-ajax="init">Loading..</p>
+ *               <p data-ajax="loading">Reloading data..</p>
+ *               <p data-ajax="ok">Ajax completed succesfully.</p>
+ *               <p data-ajax="error">Could not access the server!</p>
  *
  *  data-loop    Loop data within innerHTML template
  *
- *          ie.
- *          <ul data-loop="row = some.data.with.myarray">
- *            <li>[row]</li>
- *          </ul>
+ *               ie.
+ *               <ul data-loop="row = some.data.with.myarray">
+ *                 <li>[row]</li>
+ *               </ul>
  *
- *          Supported inline methods for data:
+ *               Supported inline methods for data:
  *
- *           [row.num()] - Row number
- *           [row.key()] - Row key
- *           [row.count()] - Row array|object count (length)
+ *                [row.num()] - Row number
+ *                [row.key()] - Row key
+ *                [row.count()] - Row array|object count (length)
  *
- *  data-row    Handle loop data before it renders on a row basis
+ *  data-row     Handle loop data before it renders on a row basis
  *
- *          ie.
- *          <ul data-row="myRowFormatter" data-loop="row = some.data.with.myarray">
- *            <li>[row]</li>
- *          </ul>
+ *               ie.
+ *               <ul data-row="myRowFormatter" data-loop="row = some.data.with.myarray">
+ *                 <li>[row]</li>
+ *               </ul>
  *
- *          myRowFormatter(row) { return row; }
+ *               myRowFormatter(row) { return row; }
  *
- *   data-event    Listen to events with chosen name and fire Deval.update accordingly
+ *  data-event   Listen to events with chosen name and fire Deval.update accordingly
  *           
- *           ie.
- *           <p data-eval="clock = new Date()" data-event="clock">[clock]</p>
- *           <script> deval.dispatchEvent('clock'); </script>
+ *               ie.
+ *               <p data-eval="clock = new Date()" data-event="clock">[clock]</p>
+ *               <script> deval.dispatchEvent('clock'); </script>
  * 
- *  data-limit    Loop limit uint[,uint]
+ *  data-limit   Loop limit uint[,uint]
  *
- *          ie.
- *          <ul data-limit="5" data-loop="row = some.data.with.myarray">
- *            <li>[row]</li>
- *          </ul>
+ *               ie.
+ *               <ul data-limit="5" data-loop="row = some.data.with.myarray">
+ *                 <li>[row]</li>
+ *               </ul>
  *
- *          data-limit="10"        -> limit loop to 10 rows
- *          data-limit="5,10"      -> loop only rows 5 to 10
- *          data-limit="mylimitvar"    -> use variable to pass the limit ie. mylimitvar = 10
- *          data-limit="start,limit"  -> use variables to pass the start,limit ie. start = 5, limit = 10
+ *               data-limit="10"        -> limit loop to 10 rows
+ *               data-limit="5,10"      -> loop only rows 5 to 10
+ *               data-limit="mylimitvar"    -> use variable to pass the limit ie. mylimitvar = 10
+ *               data-limit="start,limit"  -> use variables to pass the start,limit ie. start = 5, limit = 10
  *
  *  data-form    Binds the form to Deval and gives support for data-value, data-validate, etc. methods
- *          You can pass URL GET params with same input names into the fields automatically (urlParamsToForm)
- *          Use multipart/form-data in your form to send files, default is application/x-www-form-urlencoded
+ *               You can pass URL GET params with same input names into the fields automatically (urlParamsToForm)
+ *               Use multipart/form-data in your form to send files, default is application/x-www-form-urlencoded
  *
- *          ie.
- *          <form data-form action="/myFormHandler"></form>
+ *               ie.
+ *               <form data-form action="/myFormHandler"></form>
  *
- *  data-value    Form field default value if no value is set
+ *  data-value   Form field default value if no value is set
  *
- *          ie.
- *          <input data-value="target.country||'fi'||23" type="text">
+ *               ie.
+ *               <input data-value="target.country||'fi'||23" type="text">
  *
- *  data-validate  Handle any form changes, also fired upon ajax submit
- *          You can do easily server side checks with this or make logics according to the user input
+ *  data-validate Handle any form changes, also fired upon ajax submit
+ *                You can do easily server side checks with this or make logics according to the user input
  *
- *          ie.
- *          <form data-validate="myValidator(dat)"></form>
+ *               ie.
+ *               <form data-validate="myValidator(dat)"></form>
  *
- *          function myValidator(dat) { return dat; }
+ *               function myValidator(dat) { return dat; }
  *
  *  data-interval  Data update interval in milliseconds (for data-eval)
  *
- *          ie.
- *          <p data-interval="1000" data-eval="time = new Date()">[time]</p>
+ *               ie.
+ *               <p data-interval="1000" data-eval="time = new Date()">[time]</p>
  *
  *  data-translate  Handle ajax data before rendering (for your own data logics)
  *
- *          ie.
- *          <div data-translate="myPreDataHandler" data-eval="my = { foo: 'bar' }"></div>
+ *               ie.
+ *               <div data-translate="myPreDataHandler" data-eval="my = { foo: 'bar' }"></div>
  *
  *          function myPreDataHandler(dat) { return dat; }
  *
  *  data-callback  Callback function after we are done eval'ing, passes object so ie. function myCallback(o) {}
- *          Also callback for ajax forms server response, if you want data pre-processing use ie. data-translate="json"
- *          With ajax calls, there can be error so setup your ajax callbacks like:
+ *               Also callback for ajax forms server response, if you want data pre-processing use ie. data-translate="json"
+ *               With ajax calls, there can be error so setup your ajax callbacks like:
  *
- *          ie.
- *          <div data-callback="myCallback(dat, error)" data-eval="my = ajax:call"></div>
+ *               ie.
+ *               <div data-callback="myCallback(dat, error)" data-eval="my = ajax:call"></div>
  *
  *  data-ignore    Ignores this dom tree in parsing (if you want to use deval.render calls directly)
  *
- *          ie.
- *          <div data-ignore></div>
+ *               ie.
+ *               <div data-ignore></div>
  *
  *  data-debug    Debug all related parses into console.log
  *
- *          ie.
- *          <div data-debug data-eval="debug = this"></div>
+ *               ie.
+ *               <div data-debug data-eval="debug = this"></div>
  *
  *
  * SOME EXAMPLES OF USAGE:
@@ -214,45 +214,45 @@
  *
  * // Initialize - You can se these directly too ie. deval.debug = true
  * var deval = new Deval({
- *     urlParamsToForm: false,           // default: true
+ *     urlParamsToForm: false,          // default: true
  *     formStorage: false,              // default: true
- *     debug: true,                // default: false
+ *     debug: true,                     // default: false
  *
  *    // Global Ajax callbacks
- *    onLoad:  function() {},            // ajax onLoad (loading)
- *    onAjax:  function() {},            // ajax onAjax (ok)
+ *    onLoad:  function() {},           // ajax onLoad (loading)
+ *    onAjax:  function() {},           // ajax onAjax (ok)
  *
  *    // Form changes (data-form)
- *    onStorage:  function( data ) {},      // Callback if some form has some value changed (formStorage: true)
+ *    onStorage:  function( data ) {},  // Callback if some form has some value changed (formStorage: true)
  * });
  *
  * // If you want to access the rendering engine directly with your own stuff
  * deval.render({
  *
  *     // Required
- *    id:    'content',              // element id
- *    set:  'now',                // variable
+ *    id:    'content',                 // element id
+ *    set:  'now',                      // variable
  *
  *    // Data methods
- *    get:  'new Date()',             // eval data
+ *    get:  'new Date()',               // eval data
  *    dat:  function() { return new Date() },   // direct data
- *    limit:  0,                  // loop limit (0 = unlimited)
+ *    limit:  0,                        // loop limit (0 = unlimited)
  *
  *    // Ajax options
- *    url:  'http://ajax/jsondata',        // ajax url
- *    translate: '',                // json|xml|tags|function|other
- *    xml:   false,                // parse as xml?
- *    tags:   false,                // encode html tags?
- *    params:  'foo=bar&limit=max'          // pass params to url with dynamic values
+ *    url:  'http://ajax/jsondata',     // ajax url
+ *    translate: '',                    // json|xml|tags|function|other
+ *    xml:   false,                     // parse as xml?
+ *    tags:   false,                    // encode html tags?
+ *    params:  'foo=bar&limit=max'      // pass params to url with dynamic values
  *
  *    // Form options
- *    form:   'formid',              // handle as form data
+ *    form:   'formid',                 // handle as form data
  *
  *    // Update interval
- *    interval: 1000,                // milliseconds
+ *    interval: 1000,                   // milliseconds
  *
  *    // Callback
- *    callback: function(o) {            // Object o has all the info above with tha data in o.dat
+ *    callback: function(o) {           // Object o has all the info above with tha data in o.dat
  *      // your code
  *      alert( JSON.stringify(o) );
  *    },
@@ -264,7 +264,7 @@
  *    debug: true,
  *    console = {
  *      log: function(s) { console.log(s); },    // overwrite example:
- *      error: function(s) { console.error(s); }  // deval.console.error = function(s) { alert(s); }
+ *      error: function(s) { console.error(s); } // deval.console.error = function(s) { alert(s); }
  *    }
  *
  * });
@@ -302,11 +302,11 @@
  *
  *     url.myparam    // some
  *     url._parent    // bar
- *     url._first    // foo
- *     url._last    // things
+ *     url._first     // foo
+ *     url._last      // things
  *     url._hash.key  // value
- *     url.1      // foo
- *     url.2      // bar
+ *     url.1          // foo
+ *     url.2          // bar
  *     etc.
  *
  */
@@ -323,7 +323,7 @@
  *
  * If you want to be part of my future eye and brain surgery in the loonie bin, send your love to:
  *
- *   BTC: 1Q5uzabWMAVjXHPkEFk75QiAWqutqmizbL
+ *  BTC: 1Q5uzabWMAVjXHPkEFk75QiAWqutqmizbL
  *  LTC: LMruyWBnh9DCPvBCnEfgda8dwHQSdViKqE
  *
  *
@@ -339,44 +339,44 @@
  * Comment: Listen to some variable/object and dispatch global event if it changes?
  * Answer: You shouldn't use Observables, they are heavy on client CPU.
  *
- *   data-event      - You can use data-event="test" to create events and call them in data-callbacks
- *             - deval.addEventListener('test', 'myDivId')
- *             - deval.dispatchEvent('test')
+ *   data-event    - You can use data-event="test" to create events and call them in data-callbacks
+ *                 - deval.addEventListener('test', 'myDivId')
+ *                 - deval.dispatchEvent('test')
  * 
- *  data-callback    - for forms you can use data-form and data-validate="myUpdaterMethod" (passes form data obj)
- *            - use events and not these kind of heavy CPU eaters that can make your code go bad
- *            - force other views to update manually with data-validate
+ *  data-callback  - for forms you can use data-form and data-validate="myUpdaterMethod" (passes form data obj)
+ *                 - use events and not these kind of heavy CPU eaters that can make your code go bad
+ *                 - force other views to update manually with data-validate
  *
  * 2. Routing: Pushing changes to the browser url hash and listening for changes to act accordingly.
  * -------------------------------------------------------------------------------------------------
  * Comment: Simple url handling and view changing accordingly?
  * Conclusion: You should make your own url listeners -> Easy to create custom logics
  *
- *   location.hash    - read the search hash and view wanted things with simple data-eval="location.hash == '#foo'"
- *             - you can write your own logic for the hash also with some boolean method like data-eval="routing('#foo/bar')"
+ *   location.hash - read the search hash and view wanted things with simple data-eval="location.hash == '#foo'"
+ *                 - you can write your own logic for the hash also with some boolean method like data-eval="routing('#foo/bar')"
  *
- *   url.param      - global url object can be accessed to check params like url.foo (UrlParser included in the bottom)
+ *   url.param     - global url object can be accessed to check params like url.foo (UrlParser included in the bottom)
  *
- *   data-callback    - custom methods can be easily integrated with callbacks and location.hash changed with it
- *             - updating the wanted views can be called directly through js with deval.update('id' [, myCallback])
+ *   data-callback - custom methods can be easily integrated with callbacks and location.hash changed with it
+ *                 - updating the wanted views can be called directly through js with deval.update('id' [, myCallback])
  *
  * 3. View bindings: Using observable objects in views, having the views automatically refresh when the observable object change.
  * -------------------------------------------------------------------------------------------------
  * Comment: Automatic innerHTML change when listened var/obj changes?
  * Answer: You should make your own listeners with onclick, onfocus etc. -> More control
  *
- *   data-callback    - ajax renders can be updated automatically with data-interval and tracked with data-callback
- *             - deval.update('id' [, myCallback])
- *             - deval.update( mydiv [, myCallback] )
+ *   data-callback  - ajax renders can be updated automatically with data-interval and tracked with data-callback
+ *                  - deval.update('id' [, myCallback])
+ *                  - deval.update( mydiv [, myCallback] )
  *
  * 4. Two way bindings: Having the view push changes to the observable object automatically, for example a form input.
  * -------------------------------------------------------------------------------------------------
  * Comment: This is needed only with ajax and user forms?
  * Answer: We give user the control of this.
  *
- *   data-validate    - For forms you can use data-form and data-validate="myUpdaterMethod" (passes form data obj)
- *             - For ajax calls you can use data-callback="myAjaxHandler" and call deval.update to render it
- *            - There are supports for ie. type="email" required in html already
+ *   data-validate  - For forms you can use data-form and data-validate="myUpdaterMethod" (passes form data obj)
+ *                  - For ajax calls you can use data-callback="myAjaxHandler" and call deval.update to render it
+ *                  - There are supports for ie. type="email" required in html already
  *
  * 5. Partial views: Views that include other views.
  * -------------------------------------------------------------------------------------------------
@@ -384,7 +384,7 @@
  * Answer: Callbacks are supported, yes.
  *
  *   data-eval      - With data-eval="mything == true" you can parse different things and update them accordingly
- *             - You can load/parse external files with data-eval="s = ajax:/my.html" data-callback="myHtmlImporter"
+ *                  - You can load/parse external files with data-eval="s = ajax:/my.html" data-callback="myHtmlImporter"
  *
  * 6. Filtered list views: Having views that display objects filtered by a certain criteria.
  * -------------------------------------------------------------------------------------------------
@@ -392,16 +392,16 @@
  * Answer: You can use data-translate and make eval logic accordingly.
  *
  *   data-row      - handles data before it renders on a row basis
- *   data-filter      - data-limit="10", data-limit="5,10" or use js variables/methods instead of integers
- *             - data-translate can be used for ajax calls to handle data before it renders to make any kind of filter
- *             - With ajax tables and data, you could use data-params for server side filtering
+ *   data-filter   - data-limit="10", data-limit="5,10" or use js variables/methods instead of integers
+ *                 - data-translate can be used for ajax calls to handle data before it renders to make any kind of filter
+ *                 - With ajax tables and data, you could use data-params for server side filtering
  *
  * So, the final wishlist would be?
  * --------------------------------
  *  data-bind      Observe some object/value/event for changes and update all selected views if it changes
- *   data-init      Not sure if this is needed becouse every method can be called separately? We have deval.onLoad
- *   data-error      Global error dispatcher could save someone? Currently "deval.debug = true" gives you console.log
- *             - ajax errors can be handled through data-ajax views and data-callback attributes
+ *   data-init     Not sure if this is needed becouse every method can be called separately? We have deval.onLoad
+ *   data-error    Global error dispatcher could save someone? Currently "deval.debug = true" gives you console.log
+ *                 - ajax errors can be handled through data-ajax views and data-callback attributes
  *
  * @class Deval
  */
@@ -426,47 +426,47 @@ function Deval( config ) {
    * CONFIG
    */
   // debug displays all console.log and console.error messages (default false)
-  this.debug     = config.debug ? config.debug : false;
+  this.debug = config.debug ? config.debug : false;
 
   // global render and ajax event methods (undefined by default)
-  this.onLoad   = config.onLoad;
-  this.onAjax    = config.onAjax;
+  this.onLoad = config.onLoad;
+  this.onAjax = config.onAjax;
   this.onComplete = config.onComplete;
-  this.onError  = config.onError;
+  this.onError = config.onError;
 
   // default prefix for attributes (default data-* because html5 supports them)
-  this.prefix    = config.prefix ? config.prefix : 'data-';
+  this.prefix = config.prefix ? config.prefix : 'data-';
 
   // debug console methods
-  this.log    = function(s) { console.log(s); };    // basic log stuff
-  this.error    = function(s) { console.error(s); };  // use alert here if you want to go cuckoo
+  this.log = function(s) { console.log(s); };    // basic log stuff
+  this.error = function(s) { console.error(s); };  // use alert here if you want to go cuckoo
 
   /**
    * ATTRIBUTES
    */
   this._attrs = {
-    ignore    : this.prefix + 'ignore',    // data-ignore (for global parse)
+    ignore    : this.prefix + 'ignore',   // data-ignore (for global parse)
 
-    eval    : this.prefix + 'eval',      // data-eval="now = new Date()"
-    loop    : this.prefix + 'loop',      // data-loop="list = new Array(10)"
-    row      : this.prefix + 'row',      // data-row (eval data row with data-loop)
-    value    : this.prefix + 'value',    // data-value="[foo]|bar"
-    form    : this.prefix + 'form',      // data-form (ajax)
+    eval      : this.prefix + 'eval',     // data-eval="now = new Date()"
+    loop      : this.prefix + 'loop',     // data-loop="list = new Array(10)"
+    row       : this.prefix + 'row',      // data-row (eval data row with data-loop)
+    value     : this.prefix + 'value',    // data-value="[foo]|bar"
+    form      : this.prefix + 'form',     // data-form (ajax)
 
     event     : this.prefix + 'event',    // data-event="name"
 
-    ajax     : this.prefix + 'ajax',      // data-ajax="init|ok|loading|error"
-    params     : this.prefix + 'params',    // data-params="myParams"
-    interval  : this.prefix + 'interval',    // data-interval="5000"
-    limit    : this.prefix + 'limit',    // data-limit="5,10"
+    ajax      : this.prefix + 'ajax',     // data-ajax="init|ok|loading|error"
+    params    : this.prefix + 'params',   // data-params="myParams"
+    interval  : this.prefix + 'interval', // data-interval="5000"
+    limit     : this.prefix + 'limit',    // data-limit="5,10"
 
-    translate  : this.prefix + 'translate',  // data-translate="myTranslator"
-    validate  : this.prefix + 'validate',    // data-validate="myValidator"
+    translate : this.prefix + 'translate',// data-translate="myTranslator"
+    validate  : this.prefix + 'validate', // data-validate="myValidator"
 
-    callback  : this.prefix + 'callback',    // data-callback="myCallback"
-    error    : this.prefix + 'error',    // data-error="myErrorHandler"
+    callback  : this.prefix + 'callback', // data-callback="myCallback"
+    error     : this.prefix + 'error',    // data-error="myErrorHandler"
 
-    debug    : this.prefix + 'debug'      // data-debug
+    debug     : this.prefix + 'debug'     // data-debug
   };
 
   // debug console
@@ -586,9 +586,9 @@ Deval.prototype.parseChild = function( _e ) {
 
   // try reading these from every element and gather things into object in their execution order
   var _o = {
-    eval  : _e.getAttribute( this._attrs.eval ),  // 1st
-    loop  : _e.getAttribute( this._attrs.loop ),  // 2nd
-    form  : _e.getAttribute( this._attrs.form ),  // 3rd
+    eval   : _e.getAttribute( this._attrs.eval ),  // 1st
+    loop   : _e.getAttribute( this._attrs.loop ),  // 2nd
+    form   : _e.getAttribute( this._attrs.form ),  // 3rd
     value  : _e.getAttribute( this._attrs.value )  // 4th
   };
 
@@ -600,18 +600,18 @@ Deval.prototype.parseChild = function( _e ) {
     this._depth++;
 
     // check other supported attributes
-    _o.row      = _e.getAttribute( this._attrs.row ); // 2nd inner logic eval within a loop
+    _o.row       = _e.getAttribute( this._attrs.row ); // 2nd inner logic eval within a loop
     _o.ajax      = _e.getAttribute( this._attrs.ajax );
     _o.params    = _e.getAttribute( this._attrs.params );
-    _o.interval    = _e.getAttribute( this._attrs.interval );
+    _o.interval  = _e.getAttribute( this._attrs.interval );
     _o.limit     = _e.getAttribute( this._attrs.limit );
 
     _o.event     = _e.getAttribute( this._attrs.event );
 
-    _o.translate   = _e.getAttribute( this._attrs.translate );
-    _o.validate   = _e.getAttribute( this._attrs.validate );
+    _o.translate = _e.getAttribute( this._attrs.translate );
+    _o.validate  = _e.getAttribute( this._attrs.validate );
 
-    _o.callback   = _e.getAttribute( this._attrs.callback );
+    _o.callback  = _e.getAttribute( this._attrs.callback );
     _o.error     = _e.getAttribute( this._attrs.error );
 
     // has debug on?
@@ -688,13 +688,13 @@ Deval.prototype.parseChild = function( _e ) {
     _o.type = 'form';
 
     // check other supported attributes
-    _o.debug    = _e.getAttribute( this._attrs.debug );
+    _o.debug     = _e.getAttribute( this._attrs.debug );
     _o.params    = _e.getAttribute( this._attrs.params );
 
-    _o.translate   = _e.getAttribute( this._attrs.translate );
-    _o.validate   = _e.getAttribute( this._attrs.validate );
+    _o.translate = _e.getAttribute( this._attrs.translate );
+    _o.validate  = _e.getAttribute( this._attrs.validate );
 
-    _o.callback   = _e.getAttribute( this._attrs.callback );
+    _o.callback  = _e.getAttribute( this._attrs.callback );
     _o.error     = _e.getAttribute( this._attrs.error );
 
     // has no id? let's create one on the fly so we can access it later, even if the dom changes..
@@ -707,8 +707,8 @@ Deval.prototype.parseChild = function( _e ) {
     }
 
     // dom related attributes
-    _o.id       = _id;
-    _computedStyle  = getElementStyle(_e, 'display');
+    _o.id          = _id;
+    _computedStyle = getElementStyle(_e, 'display');
     _o.display     = _computedStyle && _computedStyle.toLowerCase() != 'none' ? _computedStyle : '';
 
     // let everyone know we are parsing this by storing the id into _data
@@ -738,8 +738,8 @@ Deval.prototype.parseChild = function( _e ) {
     }
 
     // dom related attributes
-    _o.id       = _id;
-    _computedStyle  = getElementStyle(_e, 'display');
+    _o.id          = _id;
+    _computedStyle = getElementStyle(_e, 'display');
     _o.display     = _computedStyle && _computedStyle.toLowerCase() != 'none' ? _computedStyle : '';
 
     // let everyone know we are parsing this by storing the id into _data
@@ -1526,17 +1526,17 @@ Deval.prototype.event = function(_name, _id) {
 Deval.prototype.renderChild = function(_o, _i) {
   // render it as copy with changed data (no deep copy needed, yey! but hard to maintain)
   return this.renderType({
-    dom:    _o.dom,
-    id:      _o.id,
-    set:    _o.set,
-    get:    _o.get,
-    dat:    _o.dat[_i],
-    url:    _o.url,
-    callback:   _o.callback,
-    template:   _o.template,
-    limit:    _o.limit,
-    display:  _o.display,
-    debug:    _o.debug
+    dom:       _o.dom,
+    id:        _o.id,
+    set:       _o.set,
+    get:       _o.get,
+    dat:       _o.dat[_i],
+    url:       _o.url,
+    callback:  _o.callback,
+    template:  _o.template,
+    limit:     _o.limit,
+    display:   _o.display,
+    debug:     _o.debug
   });
 };
 
