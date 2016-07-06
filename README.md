@@ -31,20 +31,17 @@ Happy hacking! ;-)
 <p data-eval="timer = new Date().toLocaleTimeString()" data-interval="1000">[timer]</p>
 ```
 
-----
-## Ajax calls
-
-### JSON REST API Ajax call:
+#### JSON REST API Ajax call:
     <div data-eval="dat = ajax:json:getMyJSON">
         <div data-ajax="init">Loading..</div>
         <div data-ajax="ok">
-            <div data-eval="dat.status == 'success'">Success!</div>
+            <div data-eval="dat.status == 'ok'">Success!</div>
             <div data-eval="dat.status == 'error'">Error: [dat.error]</div>
         </div>
         <div data-ajax="error">Could not connect to server</div>
     </div>
 
-### XML Ajax call (ignore first 2 titles and update it every 5 seconds):
+#### XML Ajax call (ignore first 2 titles and update it every 5 seconds):
     <div data-eval="news = ajax:xml:news.xml" data-interval="5000">
       <div data-ajax="init">Loading..</div>
       <div data-ajax="ok">
