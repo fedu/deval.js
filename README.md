@@ -83,44 +83,44 @@ Happy hacking! ;-)
 #### Object data rendering example
 ```html
 <script>
-    var example = {
-        contents: {
-            firstArray: [
-                { html:'content1-1' },
-                { html:'content1-2' },
-                { html:'content1-3' }
-            ],
-            secondEmpty: {
-                // empty
-            },
-            thirdObject: {
-                'some': { html:'content3-1' }
-            }
-        }
-    };
-
-    function myRowFormatter(dat) {
-        dat.html = dat.html.toUpperCase();
-        return dat;
+var example = {
+  contents: {
+    firstArray: [
+      { html:'content1-1' },
+      { html:'content1-2' },
+      { html:'content1-3' }
+    ],
+    secondEmpty: {
+      // empty
+    },
+    thirdObject: {
+      'some': { html:'content3-1' }
     }
+  }
+};
 
-    function doSomethingWithDataAndKey(s, key) {
-        return s + ' render key '+key;
-    }
+function myRowFormatter(dat) {
+  dat.html = dat.html.toUpperCase();
+  return dat;
+}
 
+function doSomethingWithDataAndKey(s, key) {
+  return s + ' render key '+key;
+}
 </script>
+
 <!-- Rendering -->
 <ul data-loop="s = example.contents">
-	<li>
-    	[s.num()]. [s.key()] ([s.count()])
-		<ul data-loop="c = s" data-row="myRowFormatter">
-			<li>
-				<div data-eval="html = doSomethingWithDataAndKey(c.html, '[c.key()]')">
-					<p>[html]</p>
-				</div>
-			</li>
-		</ul>
-	</li>
+  <li>
+    [s.num()]. [s.key()] ([s.count()])
+    <ul data-loop="c = s" data-row="myRowFormatter">
+      <li>
+        <div data-eval="html = doSomethingWithDataAndKey(c.html, '[c.key()]')">
+          <p>[html]</p>
+        </div>
+      </li>
+    </ul>
+  </li>
 </ul>
 ```
 
@@ -141,9 +141,9 @@ Remember to respect cross origin XMLHttpRequests ;)
 
 <!-- XML file -->
 <div data-eval="xml = ajax:xml:test.xml">
-	<p data-eval="xmlContent = xml.getElementsByTagName('example')[0].childNodes[0].nodeValue">
-			[xmlContent]
-	</p>
+  <p data-eval="xmlContent = xml.getElementsByTagName('example')[0].childNodes[0].nodeValue">
+    [xmlContent]
+  </p>
 </div>
 ```
 
@@ -181,7 +181,7 @@ data-eval="myOutput = calculateMyThings(data)"
 URL params can be passed into ajax URL with data-params attributes
 
 ```html
-<div data-params="min=1&max=myMaxValue" data-eval="my = ajax:/call"></div>
+<div data-params="min=1&amp;max=myMaxValue" data-eval="my = ajax:/call"></div>
 ```
 
 This tries to read all values first as a variable, if not found, they're interpreted as value.
@@ -190,7 +190,7 @@ So you can pass text and variables like `var min = 0; var max = 10;` with `foo=b
 Here are some other examples of usage -> result:
 
 ```html
-data-params="foo=bar&limit=10" -> /call?foo=barVariableValue&limit=10
+data-params="foo=bar&amp;limit=10" -> /call?foo=barVariableValue&amp;limit=10
 data-params="foo='bar'"        -> /call?foo=bar
 data-params="p"                -> /call?pVarValue
 data-params="{foo:'bar'}"      -> /call?foo=bar
@@ -337,83 +337,83 @@ Debug all related parses into `console.log`
 ie. `deval.debug = true`
 ```javascript
 var deval = new Deval({
-    urlParamsToForm: false,          // default: true
-    formStorage: false,              // default: true
-    debug: true,                     // default: false
+  urlParamsToForm: false,          // default: true
+  formStorage: false,              // default: true
+  debug: true,                     // default: false
 
-    // Global Ajax callbacks
-    onLoad:  function() {},          // ajax onLoad (loading)
-    onAjax:  function() {},          // ajax onAjax (ok)
+  // Global Ajax callbacks
+  onLoad:  function() {},          // ajax onLoad (loading)
+  onAjax:  function() {},          // ajax onAjax (ok)
 
-    // Form changes (data-form)
-    onStorage:  function( data ) {}, // Callback if some form has some value changed (formStorage: true)
+  // Form changes (data-form)
+  onStorage:  function( data ) {}, // Callback if some form has some value changed (formStorage: true)
 });
 ```
 #### If you want to access the rendering engine directly with your own stuff
 ```javascript
 deval.render({
-    // Required
-    id:    'content',                // element id
-    set:    'now',                   // variable
+  // Required
+  id:  'content',      // element id
+  set: 'now',          // variable
 
-    // Data methods
-    get:    'new Date()',            // eval data
-    dat:    function() {             // direct data
-        return new Date()
-    }, 
-    limit:    0,                     // loop limit (0 = unlimited)
+  // Data methods
+  get: 'new Date()',   // eval data
+  dat: function() {    // direct data
+    return new Date()
+  }, 
+  limit:    0,         // loop limit (0 = unlimited)
 
-    // Ajax options
-    url:    'http://ajax/jsondata',  // ajax url
-    translate: '',                   // json|xml|tags|function|other
-    xml:     false,                  // parse as xml?
-    tags:     false,                 // encode html tags?
-    params:    'foo=bar&limit=max'   // pass params to url with dynamic values
+  // Ajax options
+  url: 'http://ajax/jsondata',  // ajax url
+  translate: '',                // json|xml|tags|function|other
+  xml: false,                   // parse as xml?
+  tags: false,                  // encode html tags?
+  params: 'foo=bar&limit=max'   // pass params to url with dynamic values
 
-    // Form options
-    form:     'formid',              // handle as form data
+  // Form options
+  form:     'formid',           // handle as form data
 
-    // Update interval
-    interval: 1000,                  // milliseconds
+  // Update interval
+  interval: 1000,               // milliseconds
 
-    // Callback
-    callback: function(o) {          // Object o has all the info above with tha data in o.dat
+  // Callback
+  callback: function(o) {       // Object o has all the info above with tha data in o.dat
     // your code
     alert( JSON.stringify(o) );
-    },
+  },
 
-    // If you want your own template
-    template: '<p>Date is [now]</p>'
+  // If you want your own template
+  template: '<p>Date is [now]</p>'
 
-    // Debugging and debug console overwrite
-    debug: true,
-    console = {
+  // Debugging and debug console overwrite
+  debug: true,
+  console = {
     log: function(s) { console.log(s); },    // overwrite example:
     error: function(s) { console.error(s); } // deval.console.error = function(s) { alert(s); }
-    }
+  }
 });
 ```
 #### Events
 ```javascript
-    deval.event('myEvent', 'myDivId'); // create event
-    deval.event('myEvent', 'myDivId'); // dispatch event
+deval.event('myEvent', 'myDivId'); // create event
+deval.event('myEvent', 'myDivId'); // dispatch event
 
-    deval.addEventListener('myEvent', 'myDivId');
-    deval.dispatchEvent('myEvent');
-    deval.removeEventListener('myEvent', 'myDivId');
+deval.addEventListener('myEvent', 'myDivId');
+deval.dispatchEvent('myEvent');
+deval.removeEventListener('myEvent', 'myDivId');
 ```
 #### Parse whole dom document.body tree for attributes (add it to the bottom of your body)
 ```javascript
-    deval.parse();
+deval.parse();
 ```
 #### If you want to parse only your specific node tree
 ```javascript
-    deval.parse( 'myDataEvalDivId' ); or
-    deval.parse( document.getElementById('myDataEvalDivId') );
+deval.parse( 'myDataEvalDivId' ); or
+deval.parse( document.getElementById('myDataEvalDivId') );
 ```
 #### Update (parse again)
 ```javascript
-    deval.update('myDataEvalDivId');
+deval.update('myDataEvalDivId');
 ```
 
 ----
