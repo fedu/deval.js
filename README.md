@@ -32,7 +32,7 @@ Happy hacking! ;-)
 ```
 
 #### JSON REST API Ajax call:
-    <div data-eval="dat = ajax:json:getMyJSON">
+    <div data-eval="dat = ajax:json:myJsonUrl">
         <div data-ajax="init">Loading..</div>
         <div data-ajax="ok">
             <div data-eval="dat.status == 'ok'">Success!</div>
