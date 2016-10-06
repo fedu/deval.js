@@ -97,10 +97,10 @@ Happy hacking! ;-)
         <input type="text" name="myinput" data-value="data.myinput | 'My auto-input'">
     </form>
     <script>
-        myValidator(form) {
+        function myValidator(form) {
             return form.myinput !== 'My auto-input';
         }
-        myServerReponse(response) {
+        function myServerReponse(response) {
             // server data handling
         }
     </script>
