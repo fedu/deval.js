@@ -87,7 +87,13 @@ Happy hacking! ;-)
 #### Forms
 ```html
 <div data-eval="data = ajax:json:myAjaxGetURL">
-    <form action="myAjaxPostURL" method="POST" id="myform" data-form="myform" data-validate="myValidator" data-callback="serverResponse">
+    <form
+        action="myAjaxPostURL"
+        method="POST"
+        id="myform"
+        data-form="myform"
+        data-validate="myValidator"
+        data-callback="serverResponse">
         <input type="text" name="myinput" data-value="data.myinput | 'My auto-input'">
     </form>
     <script>
