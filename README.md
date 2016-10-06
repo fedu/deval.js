@@ -54,7 +54,6 @@ Happy hacking! ;-)
 <p data-eval="this.style.background = true ? 'yellow' : 'red'">I have yellow background</p>
 ```
 
-
 #### JSON REST API Ajax call:
 ```html
 <div data-eval="dat = ajax:json:myJsonUrl">
@@ -84,6 +83,24 @@ Happy hacking! ;-)
   <div data-ajax="error">Could not load any news.</div>
 </div>
 ```
+
+#### Forms
+```html
+<div data-eval="data = ajax:json:myAjaxGetURL">
+    <form action="myAjaxPostURL" method="POST" id="myform" data-form="myform" data-validate="myValidator" data-callback="serverResponse">
+        <input type="text" name="myinput" data-value="data.myinput | 'My auto-input'">
+    </form>
+    <script>
+        myValidator(form) {
+            return form.myinput !== 'My auto-input';
+        }
+        myServerReponse(response) {
+            // server data handling
+        }
+    </script>
+</div>
+```
+
 
 #### Object data rendering example
 ```html
@@ -182,7 +199,7 @@ data-eval="myUppercaseString = 'wow'.toUpperCase()"
 data-eval="myOutput = calculateMyThings(data)"
 ```
 
-### data-params     
+### data-params
 URL params can be passed into ajax URL with data-params attributes
 
 ```
@@ -202,7 +219,7 @@ data-params="{foo:'bar'}"      -> /call?foo=bar
 data-params="t=Date.now()"     -> /call?t=1126217126272
 ```
 
-### data-ajax       
+### data-ajax
 Events for DOM objects: `init | loading | ok | error`
 ```html
 <p data-ajax="init">Loading..</p>
@@ -211,7 +228,7 @@ Events for DOM objects: `init | loading | ok | error`
 <p data-ajax="error">Could not access the server!</p>
 ```
 
-### data-loop       
+### data-loop
 Loop data within innerHTML template
 ```html
 <ul data-loop="row = some.data">
@@ -227,27 +244,27 @@ Supported inline methods for data:
 [row.count()] - Row array|object count (length)
 ```
 
-### data-row    
+### data-row
 Handle loop data before it renders on a row basis
 
 ```html
 <ul data-row="myRowFormatter" data-loop="row = some.data">
   <li>[row]</li>
 </ul>
-    
+
 myRowFormatter(row) { return row; }
 ```
 
-### data-event      
+### data-event
 Listen to events with chosen name and fire `Deval.update` accordingly
-    
+
 ```html
 <p data-eval="clock = new Date()" data-event="clock">[clock]</p>
 
 <script> deval.dispatchEvent('clock'); </script>
 ```
 
-### data-limit      
+### data-limit
 Loop `limit uint[,uint]`
 
 ```html
@@ -261,7 +278,7 @@ data-limit="mylimitvar"  -> use variable to pass the limit ie. mylimitvar = 10
 data-limit="start,limit" -> use variables to pass the start,limit ie. start = 5, limit = 10
 ```
 
-### data-form       
+### data-form
 Binds the form to Deval and gives support for `data-value`, `data-validate`, etc. methods.
 
 You can pass URL GET params with same input names into the fields automatically (urlParamsToForm).
@@ -271,14 +288,14 @@ Use multipart/form-data in your form to send files, default is `application/x-ww
 <form data-form action="/myFormHandler"></form>
 ```
 
-### data-value      
+### data-value
 Form field default value if no value is set
 
 ```html
 <input data-value="target.country||'fi'||23" type="text">
 ```
 
-### data-validate   
+### data-validate
 Handle any form changes, also fired upon ajax submit.
 You can do easily server side checks with this or make logics according to the user input.
 
@@ -288,14 +305,14 @@ You can do easily server side checks with this or make logics according to the u
 function myValidator(dat) { return dat; }
 ```
 
-### data-interval   
+### data-interval
 Data update interval in milliseconds (for `data-eval`)
 
 ```html
 <p data-interval="1000" data-eval="time = new Date()">[time]</p>
 ```
 
-### data-translate  
+### data-translate
 Handle ajax data before rendering (for your own data logics)
 
 ```html
@@ -304,7 +321,7 @@ Handle ajax data before rendering (for your own data logics)
 function myPreDataHandler(dat) { return dat; }
 ```
 
-### data-callback   
+### data-callback
 Callback function after we are done eval'ing, passes object so ie. `function myCallback(o) {}`.
 Callback for ajax forms server response, if you want data pre-processing use ie. `data-translate="json"`
 
@@ -314,14 +331,14 @@ With ajax calls, there can be error so setup your ajax callbacks like:
 <div data-callback="myCallback(dat, error)" data-eval="my = ajax:call"></div>
 ```
 
-### data-ignore     
+### data-ignore
 Ignores this dom tree in parsing (if you want to use `deval.render` calls directly)
 
 ```html
 <div data-ignore></div>
 ```
 
-### data-debug      
+### data-debug
 Debug all related parses into `console.log`
 
 ```html
@@ -353,7 +370,7 @@ deval.render({
   get: 'new Date()',   // eval data
   dat: function() {    // direct data
     return new Date()
-  }, 
+  },
   limit:    0,         // loop limit (0 = unlimited)
 
   // Ajax options

@@ -15,7 +15,7 @@
  * Happy hacking! ^__^
  *
  * @author fedu
- * 
+ *
  * @license FREE FOR ALL
  *      But, let me know of any public usage (for fame) or bugs (for shame)
  *
@@ -26,6 +26,7 @@
  * @version 2017-05-07 11:38
  *
  * @history
+ *     2017-10-06  Added Forms GET method support for form fields
  *     2017-05-07  Added events
  *     2016-03-01  Decided to release this into the wild
  *     2015-10-09  Commented and optimized
@@ -102,11 +103,11 @@
  *               myRowFormatter(row) { return row; }
  *
  *  data-event   Listen to events with chosen name and fire Deval.update accordingly
- *           
+ *
  *               ie.
  *               <p data-eval="clock = new Date()" data-event="clock">[clock]</p>
  *               <script> deval.dispatchEvent('clock'); </script>
- * 
+ *
  *  data-limit   Loop limit uint[,uint]
  *
  *               ie.
@@ -272,11 +273,11 @@
  * // Events
  * deval.event('myEvent', 'myDivId'); // create event
  * deval.event('myEvent', 'myDivId'); // dispatch event
- * 
+ *
  * deval.addEventListener('myEvent', 'myDivId');
  * deval.dispatchEvent('myEvent');
  * deval.removeEventListener('myEvent', 'myDivId');
- * 
+ *
  * // Parse whole dom document.body tree for attributes (add it to the bottom of your body)
  * deval.parse();
  *
@@ -342,7 +343,7 @@
  *   data-event    - You can use data-event="test" to create events and call them in data-callbacks
  *                 - deval.addEventListener('test', 'myDivId')
  *                 - deval.dispatchEvent('test')
- * 
+ *
  *  data-callback  - for forms you can use data-form and data-validate="myUpdaterMethod" (passes form data obj)
  *                 - use events and not these kind of heavy CPU eaters that can make your code go bad
  *                 - force other views to update manually with data-validate
@@ -1699,6 +1700,7 @@ Deval.prototype.update = function( _id, _updateCallback ) {
       return this.parseChild(_e);
     }
   }
+
   // clear dom reference and data for clean update
   delete this._objects[_id].dom;
   delete this._objects[_id].dat;
@@ -1764,6 +1766,7 @@ Deval.prototype.ajaxCall = function( _o, _data ) {
             _ref.parser.ajaxParse( _ref );
           }
 
+          self.onError();
           self.console.error('Deval.ajaxCall says:'+"\n\n"+'No Ajax support in your browser?');
           return false;
         }
@@ -1772,6 +1775,7 @@ Deval.prototype.ajaxCall = function( _o, _data ) {
     // onError
     _ajaxRequest.onerror = function(_e) {
       // change state
+      self.onError();
       _ref.ajax = 'error';
 
       // parser still here? (ajax called twice?)
@@ -1795,6 +1799,7 @@ Deval.prototype.ajaxCall = function( _o, _data ) {
           }
         } else if( _ajaxRequest.status ) {
           // errorrrrrorrororr
+          self.onError();
           _ref.ajax = 'error';
           // parser still here? (ajax called twice?)
           if( _ref.parser ) {
@@ -1903,6 +1908,10 @@ Deval.prototype.ajaxCall = function( _o, _data ) {
 
     // we got data
     if( _data ) {
+      // move data into params
+      if ( _ref.method.toLowerCase() === 'get' ) {
+        _url = _url+'?'+_data;
+      }
       _ajaxRequest.open( _ref.method ? _ref.method : 'POST', _url, true); // +'&nocache='+(new Date().getTime()) ?
       // support for user enctypes
       if( !_ref.enctype ) {
@@ -2630,7 +2639,9 @@ Deval.prototype.formSubmit = function( _e, _formCallback ) {
       // send ajax query
       } else {
         //this.console.log( _data );
-        this.console.log('Deval.formSubmit ajaxCall '+_o.method+' '+_o.action);
+        if ( this.debug ) {
+          this.console.log('Deval.formSubmit ajaxCall '+_o.method+' '+_o.action);
+        }
         this.ajaxCall( _o, _data );
       }
 
